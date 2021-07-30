@@ -1,0 +1,14 @@
+host_suffix: slice
+group_name: virtual
+copy_vars: []
+implicit_copy_vars:
+- ansible_become
+- ansible_become_method
+- ansible_become_password
+- ansible_become_user
+- ansible_common_remote_group
+- ansible_connection
+- ansible_host
+- ansible_port
+- ansible_python_interpreter
+- ansible_user

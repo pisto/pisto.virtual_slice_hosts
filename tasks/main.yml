@@ -1,0 +1,8 @@
+- name: Loop over all active hosts
+  include_tasks: add_host.yaml
+  vars:
+    _hostvars: "{{ hostvars[_host] }}"
+    _copy_vars: "{{ (implicit_copy_vars + copy_vars) | intersect(hostvars[_host].keys() | list) }}"
+  loop: "{{ ansible_play_hosts }}"
+  loop_control:
+    loop_var: _host
