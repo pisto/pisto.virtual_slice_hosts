@@ -1,3 +1,9 @@
+- name: Set internal arguments
+  # this is necessary to be able to set different batch values, otherwise only the value from the host in the run_once task will be picked up
+  # it is not supported to have different values of other parameters, such as group_name
+  set_fact:
+    _pisto_virtual_slice_hosts:
+      batch: "{{ batch }}"
 - name: Loop over all active hosts
   include_tasks: add_host.yaml
   vars:

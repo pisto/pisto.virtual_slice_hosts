@@ -3,7 +3,7 @@
     name: "{{ _hostvars.inventory_hostname }}.{{ host_suffix }}-{{ i }}"
     groups: "{{ _hostvars.group_names + [group_name] }}"
   args: "{{ dict(_copy_vars | zip(_copy_vars | map('extract', _hostvars))) | combine({payload_var: item}) }}"
-  loop: "{{ _hostvars[payload_var] | batch(batch | int) | list }}"
+  loop: "{{ _hostvars[payload_var] | batch(_hostvars._pisto_virtual_slice_hosts.batch | int) | list }}"
   loop_control:
     index_var: i
     label: "{{ _hostvars.inventory_hostname }}.{{ host_suffix }}-{{ i }}"
