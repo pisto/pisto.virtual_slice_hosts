@@ -3,6 +3,8 @@
   vars:
     _hostvars: "{{ hostvars[_host] }}"
     _copy_vars: "{{ (implicit_copy_vars + copy_vars) | intersect(hostvars[_host].keys() | list) }}"
+  # add_host is implicitly run_once, so we be run_once here too
+  run_once: true
   loop: "{{ ansible_play_hosts }}"
   loop_control:
     loop_var: _host
