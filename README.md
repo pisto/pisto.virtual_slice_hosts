@@ -52,8 +52,7 @@ parallelize operations at the host level! The above playbook can be revisited as
 
 For example, if you have `some-host` with a `work_items` list of size 100, the above playbook will run the `run-job`
 role for 10 different virtual hosts `some-host.slice-[0-9]`, and each of these hosts will have a slice of size 10 of the
-original `work_items` list. The virtual hosts will run the tasks in parallel, as much as the number of [forks]
-(https://docs.ansible.com/ansible/latest/reference_appendices/config.html#default-forks) setting allows.
+original `work_items` list. The virtual hosts will run the tasks in parallel, as much as the number of [forks](https://docs.ansible.com/ansible/latest/reference_appendices/config.html#default-forks) setting allows.
 
 Creation of the virtual host
 --------------
@@ -66,8 +65,7 @@ The virtual hosts inherit the same groups of the real hosts. Additionally, they 
 default `virtual`: this group can be used to select the virtual hosts in host patterns. This group name is controlled
 by the variable `group_name`.
 
-This role uses internally the [`add_host` module]
-(https://docs.ansible.com/ansible/latest/collections/ansible/builtin/add_host_module.html) It is not possible to remove
+This role uses internally the [`add_host` module](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/add_host_module.html) It is not possible to remove
 the new hosts. It is however possible to use this role multiple times, with a different value for the the `group_name`
 parameter to select between different parallel sections of a playbook.
 
