@@ -1,4 +1,4 @@
-Ansible role `virtual-slice-hosts`
+Ansible role `virtual_slice_hosts`
 =========
 
 This utility role uses the `add_host` (`ansible.builtin.add_host`) module to create virtual "slices" of your inventory
@@ -22,9 +22,16 @@ The above playbook would run hosts in parallel (according to the number of forks
 `work_items` serially. It is also not possible to use `async` and `poll: 0`, because `include_role` does not support
 async tasks.
 
-With `virtual-slice-hosts`, you can create "virtual" copies of your hosts that are added in the in-memory inventory of
+With `virtual_slice_hosts`, you can create "virtual" copies of your hosts that are added in the in-memory inventory of
 Ansible in a `virtual` group. The new hosts will hold slices of the whole `work_items` array, and so Ansible can
-parallelize operations at the host level! The above playbook can be revisited as below:
+parallelize operations at the host level!
+
+First install it:
+```bash
+ansible-galaxy install pisto.virtual_slice_hosts
+```
+
+The serial playbook can be parallelized as below:
 ```yaml
 # Prepend this play to your playbook:
 - name: Prepare work items and create virtual slice hosts
@@ -32,7 +39,7 @@ parallelize operations at the host level! The above playbook can be revisited as
   tasks:
   - name: Create virtual slice hosts
     include_role:
-      name: virtual-slice-hosts
+      name: pisto.virtual_slice_hosts
     vars:
       payload_var: work_items     # the name of the host variable that holds the list of work items
       batch: 10                   # the maximum batch size
@@ -83,7 +90,7 @@ Role Variables
 | `payload_var`        | name of the variable that holds the "work" list, that will be split in equal batches across virtual hosts              |
 | `batch`              | size of the batch                                                                                                      |
 | `copy_vars`          | list of copied variables (default `[]`)                                                                                |
-| `implicit_copy_vars` | additional list of copied variables [connection, user and privilege escalation-related variables](https://github.com/pisto/virtual-slice-hosts/blob/main/defaults/main.yml#L4-L14) |
+| `implicit_copy_vars` | additional list of copied variables [connection, user and privilege escalation-related variables](https://github.com/pisto/virtual_slice_hosts/blob/main/defaults/main.yml#L4-L14) |
 
 License
 -------
