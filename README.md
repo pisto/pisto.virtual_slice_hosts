@@ -80,6 +80,10 @@ The virtual hosts do not inherit automatically all the real host variables. Seve
 escalation-related variables are copied over by default. If you need additional variables to be copied over, list them
 in the list `copy_vars`.
 
+You should be aware of the fact that since `ansible.builtin.add_host` runs as `run_once`, the role parameters should not
+change across the hosts thank include this role. There is explicit support for different values of the `batch`
+parameter. Setting different values across hosts for any other parameter is undefined behaviour.
+
 Role Variables
 --------------
 
