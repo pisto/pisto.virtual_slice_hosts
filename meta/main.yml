@@ -1,7 +1,6 @@
 galaxy_info:
   author: Lorenzo Pistone
-  description: An utility role to "slice" hosts for parallelizing tasks
-  company: Kiratech S.P.A.
+  description: An utility role to "slice" hosts in virtual copies to parallelize task execution
   license: MIT
   min_ansible_version: 2.9
 
