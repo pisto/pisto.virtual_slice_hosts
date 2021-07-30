@@ -1,4 +1,4 @@
-`virtual-slice-hosts`
+Ansible role `virtual-slice-hosts`
 =========
 
 This utility role uses the `add_host` (`ansible.builtin.add_host`) module to create virtual "slices" of your inventory
@@ -78,13 +78,14 @@ in the list `copy_vars`.
 Role Variables
 --------------
 
+| variable             | description                                                                                                            |
 |----------------------|------------------------------------------------------------------------------------------------------------------------|
 | `host_suffix`        | suffix of the generated host name, default `slice`                                                                     |
 | `group_name`         | group name of the new virtual hosts (default `virtual`)                                                                |
 | `payload_var`        | name of the variable that holds the "work" list, that will be split in equal batches across virtual hosts              |
 | `batch`              | size of the batch                                                                                                      |
-| `copy_vars`          | list of copied variables                                                                                               |
-| `implicit_copy_vars` | additional list of copied variables (defaults to known connection, user and privilege escalation-related variables)    |
+| `copy_vars`          | list of copied variables (default `[]`)                                                                                |
+| `implicit_copy_vars` | additional list of copied variables [connection, user and privilege escalation-related variables](https://github.com/pisto/virtual-slice-hosts/blob/main/defaults/main.yml#L4-L14) |
 
 License
 -------
